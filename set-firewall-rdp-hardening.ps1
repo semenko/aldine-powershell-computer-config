@@ -23,3 +23,6 @@ Get-NetFirewallRule -DisplayName "Remote Desktop*" | Set-NetFirewallRule -enable
 # Disable NLA
 # Setting the NLA information to Disabled
 (Get-WmiObject -class "Win32_TSGeneralSetting" -Namespace root\cimv2\terminalservices -ComputerName $env:computername -Filter "TerminalName='RDP-tcp'").SetUserAuthenticationRequired(0)
+
+# Disable SMB1
+Disable-WindowsOptionalFeature -Online -FeatureName smb1protocol -NoRestart -Verbose
