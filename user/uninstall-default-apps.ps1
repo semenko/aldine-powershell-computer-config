@@ -2,6 +2,7 @@
 
 Write-Host "Uninstalling cruft and Microsoft applications."
 Get-AppxPackage "Microsoft.3DBuilder" | Remove-AppxPackage
+Get-AppxPackage *print3d* | Remove-AppxPackage
 Get-AppxPackage "Microsoft.Getstarted" | Remove-AppxPackage
 Get-AppxPackage "Microsoft.MicrosoftOfficeHub" | Remove-AppxPackage
 Get-AppxPackage "Microsoft.MinecraftUWP" | Remove-AppxPackage
