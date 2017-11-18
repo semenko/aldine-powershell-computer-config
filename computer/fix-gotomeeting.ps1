@@ -1,7 +1,7 @@
 # Remove old G2M Runfiles
-Stop-Process -processname g2mstart
-Stop-Process -processname g2mlauncher
-Stop-Process -processname g2mcomm
+Stop-Process -processname g2mstart -Force -ErrorAction Ignore
+Stop-Process -processname g2mlauncher -Force -ErrorAction Ignore
+Stop-Process -processname g2mcomm -Force -ErrorAction Ignore
 
 Remove-Item "C:\Program Files (x86)\Citrix\GoToMeeting" -Force -Recurse -ErrorAction Ignore
 
