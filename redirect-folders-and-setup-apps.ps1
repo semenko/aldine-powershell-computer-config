@@ -19,7 +19,7 @@
 
 
 # Your domain
-[string]$domain = "@example.com"
+[string]$domain = "@aldinetravel.com"
 # Your domain GUID (get from Azure AD admin portal)
 [string]$domain_guid = "a3230643-8a7c-41ca-b8e5-e7ee5c2d17b2"
 # File to touch after this script is run
@@ -50,43 +50,32 @@ if ($upn -like "*not a domain user*") {
 }
 
 # Have we run before?
-# TODO: Test for some version / post-run file.
-
 if (Test-Path $markerpath) {
     # File exists, we've run before.
     exit
 }
 
 
-exit 
-
 ########################################################
 ## INITIAL SETUP
 ########################################################
 
 ### Set Office 2013 Modern Auth
-Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Office\15.0\Common\Identity" -Name EnableADAL -PropertyType DWORD -Value 1
-Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Office\15.0\Common\Identity" -Name Version -PropertyType DWORD -Value 1
+Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Office\15.0\Common\Identity" -Name EnableADAL -Type DWORD -Value 1
+Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Office\15.0\Common\Identity" -Name Version -Type DWORD -Value 1
 
 
 ### Set OneDrive Options
 # Modern Auth
-Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\OneDrive" -Name EnableADAL -PropertyType DWORD -Value 1
+Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\OneDrive" -Name EnableADAL -Type DWORD -Value 1
 # Only Business Sync
-Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\OneDrive" -Name EnableAllOcsiClients -PropertyType DWORD -Value 1
-Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\OneDrive" -Name DisablePersonalSync -PropertyType DWORD -Value 1 
-Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\OneDrive" -Name DefaultToBusinessFRE -PropertyType DWORD -Value 1
+Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\OneDrive" -Name EnableAllOcsiClients -Type DWORD -Value 1
+Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\OneDrive" -Name DisablePersonalSync -Type DWORD -Value 1
+Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\OneDrive" -Name DefaultToBusinessFRE -Type DWORD -Value 1
 # Sync to our domain's GUID only
-Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\OneDrive\Tenants\$domain_guid" -Name DisableCustomRoot -PropertyType DWORD -Value 1
-
-
-########################################################
-## Sabre and ClientBase Configurations
-########################################################
-
-# You probably don't need these.
-Software\TRAMS\CBPLUS\LOGINNAME\%USERNAME%\PNRSETTINGS\CRS SETTINGS     REG_SZ "CRS NAME" = "Sabre"
-
+New-Item -Path "HKCU:\SOFTWARE\Microsoft\OneDrive" -Name Tenants
+New-Item -Path "HKCU:\SOFTWARE\Microsoft\OneDrive\Tenants" -Name $domain_guid
+Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\OneDrive\Tenants\$domain_guid" -Name DisableCustomRoot -Type DWORD -Value 1
 
 
 ########################################################
@@ -226,7 +215,7 @@ public extern static int SHSetKnownFolderPath(ref Guid folderId, uint flags, Int
     } else {
         throw New-Object System.IO.DirectoryNotFoundException "Could not find part of the path $Path."
     }
-	
+
     ### Optional settings
 	# Fix up permissions, if we're still here
 	# attrib +r $Path
@@ -250,9 +239,9 @@ Set-KnownFolderPath -KnownFolder 'Contacts' -Path "$ONEDRIVESYNC\Work Sync\Conta
 Set-KnownFolderPath -KnownFolder 'Favorites' -Path "$ONEDRIVESYNC\Work Sync\Favorites"
 Set-KnownFolderPath -KnownFolder 'Links' -Path "$ONEDRIVESYNC\Work Sync\Links"
 Set-KnownFolderPath -KnownFolder 'Music' -Path "$ONEDRIVESYNC\Work Sync\Music"
-Set-KnownFolderPath -KnownFolder 'Saved Games' -Path "$ONEDRIVESYNC\Work Sync\Saved Games"
-Set-KnownFolderPath -KnownFolder 'Searches' -Path "$ONEDRIVESYNC\Work Sync\Searches"
-Set-KnownFolderPath -KnownFolder 'Start Menu' -Path "$ONEDRIVESYNC\Work Sync\Start Menu"
+Set-KnownFolderPath -KnownFolder 'SavedGames' -Path "$ONEDRIVESYNC\Work Sync\Saved Games"
+Set-KnownFolderPath -KnownFolder 'SavedSearches' -Path "$ONEDRIVESYNC\Work Sync\Searches"
+Set-KnownFolderPath -KnownFolder 'StartMenu' -Path "$ONEDRIVESYNC\Work Sync\Start Menu"
 Set-KnownFolderPath -KnownFolder 'Videos' -Path "$ONEDRIVESYNC\Work Sync\Videos"
 ## Optionally, sync the AppData (Roaming) folder
 ## This can be quite low yield and can result in high-frequency writes.
