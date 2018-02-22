@@ -20,8 +20,10 @@ $redirectFoldersToOnedriveForBusiness = $True #if enabled, the next array needs 
 $enableFilesOnDemand = $True #Needs Windows 10 1709 or higher
 $listOfFoldersToRedirectToOnedriveForBusiness = @(#One line for each folder you want to redirect. For knownFolderInternalName choose from Get-KnownFolderPath function, for knownFolderInternalIdentifier choose from Set-KnownFolderPath function
     @{"knownFolderInternalName" = "Desktop";"knownFolderInternalIdentifier"="Desktop";"desiredSubFolderNameInOnedrive"="Desktop"},
-    @{"knownFolderInternalName" = "MyDocuments";"knownFolderInternalIdentifier"="Documents";"desiredSubFolderNameInOnedrive"="My Documents"},
-    @{"knownFolderInternalName" = "MyPictures";"knownFolderInternalIdentifier"="Pictures";"desiredSubFolderNameInOnedrive"="My Pictures"} #note that the last entry does NOT end with a comma
+    @{"knownFolderInternalName" = "MyDocuments";"knownFolderInternalIdentifier"="Documents";"desiredSubFolderNameInOnedrive"="Documents"},
+    @{"knownFolderInternalName" = "Downloads";"knownFolderInternalIdentifier"="Downloads";"desiredSubFolderNameInOnedrive"="Downloads"},
+    @{"knownFolderInternalName" = "MyPictures";"knownFolderInternalIdentifier"="Pictures";"desiredSubFolderNameInOnedrive"="Pictures"},
+    @{"knownFolderInternalName" = "MyVideos";"knownFolderInternalIdentifier"="Videos";"desiredSubFolderNameInOnedrive"="Videos"}
 )
 
 #OPTIONAL CONFIGURATION:
@@ -139,11 +141,16 @@ Start-Transcript -Path `$logFile
 #ENSURE CONFIG REGISTRY KEYS ARE CREATED
 try{
     Write-Output `"Adding registry keys for Onedrive`"
-    `$res = New-Item -Path `"HKCU:\Software\Microsoft\Onedrive`" -Confirm:`$False -ErrorAction SilentlyContinue
-    `$res = New-ItemProperty -Path `"HKCU:\Software\Microsoft\Onedrive`" -Name DefaultToBusinessFRE -Value 1 -PropertyType DWORD -Force -ErrorAction Stop
-    `$res = New-ItemProperty -Path `"HKCU:\Software\Microsoft\Onedrive`" -Name DisablePersonalSync -Value 1 -PropertyType DWORD -Force -ErrorAction Stop
-    `$res = New-ItemProperty -Path `"HKCU:\Software\Microsoft\Onedrive`" -Name EnableEnterpriseTier -Value 1 -PropertyType DWORD -Force -ErrorAction Stop
-    `$res = New-ItemProperty -Path `"HKCU:\Software\Microsoft\Onedrive`" -Name EnableADAL -Value 1 -PropertyType DWORD -Force -ErrorAction Stop
+    `$res = New-Item -Path `"HKCU:\Software\Microsoft\OneDrive`" -Confirm:`$False -ErrorAction SilentlyContinue
+    `$res = New-ItemProperty -Path `"HKCU:\Software\Microsoft\OneDrive`" -Name DefaultToBusinessFRE -Value 1 -PropertyType DWORD -Force -ErrorAction Stop
+    `$res = New-ItemProperty -Path `"HKCU:\Software\Microsoft\OneDrive`" -Name DisablePersonalSync -Value 1 -PropertyType DWORD -Force -ErrorAction Stop
+    `$res = New-ItemProperty -Path `"HKCU:\Software\Microsoft\OneDrive`" -Name EnableEnterpriseTier -Value 1 -PropertyType DWORD -Force -ErrorAction Stop
+    `$res = New-ItemProperty -Path `"HKCU:\Software\Microsoft\OneDrive`" -Name EnableADAL -Value 1 -PropertyType DWORD -Force -ErrorAction Stop
+    `$res = New-ItemProperty -Path `"HKCU:\Software\Microsoft\OneDrive`" -Name EnableAllOcsiClients -Value 1 -PropertyType DWORD -Force -ErrorAction Stop
+    `$res = New-Item -Path `"HKCU:\Software\Microsoft\OneDrive`" -Name Tenants -Confirm:`$False -ErrorAction SilentlyContinue
+    `$res = New-Item -Path `"HKCU:\Software\Microsoft\OneDrive\Tenants`" -Name a3230643-8a7c-41ca-b8e5-e7ee5c2d17b2 -Confirm:`$False -ErrorAction SilentlyContinue
+    `$res = New-ItemProperty -Path `"HKCU:\Software\Microsoft\OneDrive\Tenants\a3230643-8a7c-41ca-b8e5-e7ee5c2d17b2`" -Name DisableCustomRoot -Value 1 -PropertyType DWORD -Force -ErrorAction Stop
+
     Write-Output `"Registry keys for Onedrive added`"
 }catch{
     Write-Error `"Failed to add Onedrive registry keys, installation may not be consistent`" -ErrorAction Continue
@@ -379,7 +386,7 @@ Function Get-KnownFolderPath {
             [Parameter(Mandatory = `$true)]
             [ValidateSet('AdminTools','ApplicationData','CDBurning','CommonAdminTools','CommonApplicationData','CommonDesktopDirectory','CommonDocuments','CommonMusic',`
             'CommonOemLinks','CommonPictures','CommonProgramFiles','CommonProgramFilesX86','CommonPrograms','CommonStartMenu','CommonStartup','CommonTemplates',`
-            'CommonVideos','Cookies','Desktop','DesktopDirectory','Favorites','Fonts','History','InternetCache','LocalApplicationData','LocalizedResources','MyComputer',`
+            'CommonVideos','Cookies','Desktop','DesktopDirectory','Downloads','Favorites','Fonts','History','InternetCache','LocalApplicationData','LocalizedResources','MyComputer',`
             'MyDocuments','MyMusic','MyPictures','MyVideos','NetworkShortcuts','Personal','PrinterShortcuts','ProgramFiles','ProgramFilesX86','Programs','Recent',`
             'Resources','SendTo','StartMenu','Startup','System','SystemX86','Templates','UserProfile','Windows')]
             [string]`$KnownFolder
