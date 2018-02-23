@@ -141,15 +141,25 @@ Start-Transcript -Path `$logFile
 #ENSURE CONFIG REGISTRY KEYS ARE CREATED
 try{
     Write-Output `"Adding registry keys for Onedrive`"
-    `$res = New-Item -Path `"HKCU:\Software\Microsoft\OneDrive`" -Confirm:`$False -ErrorAction SilentlyContinue
+    `$res = New-Item -Path `"HKCU:\Software\Microsoft`" -Name OneDrive -ErrorAction SilentlyContinue
     `$res = New-ItemProperty -Path `"HKCU:\Software\Microsoft\OneDrive`" -Name DefaultToBusinessFRE -Value 1 -PropertyType DWORD -Force -ErrorAction Stop
     `$res = New-ItemProperty -Path `"HKCU:\Software\Microsoft\OneDrive`" -Name DisablePersonalSync -Value 1 -PropertyType DWORD -Force -ErrorAction Stop
-    `$res = New-ItemProperty -Path `"HKCU:\Software\Microsoft\OneDrive`" -Name EnableEnterpriseTier -Value 1 -PropertyType DWORD -Force -ErrorAction Stop
+    `$res = New-ItemProperty -Path `"HKCU:\Software\Microsoft\OneDrive`" -Name EnableEnterpriseUpdate -Value 1 -PropertyType DWORD -Force -ErrorAction Stop
     `$res = New-ItemProperty -Path `"HKCU:\Software\Microsoft\OneDrive`" -Name EnableADAL -Value 1 -PropertyType DWORD -Force -ErrorAction Stop
+    `$res = New-ItemProperty -Path `"HKCU:\Software\Microsoft\OneDrive`" -Name SilentAccountConfig -Value 1 -PropertyType DWORD -Force -ErrorAction Stop
     `$res = New-ItemProperty -Path `"HKCU:\Software\Microsoft\OneDrive`" -Name EnableAllOcsiClients -Value 1 -PropertyType DWORD -Force -ErrorAction Stop
-    `$res = New-Item -Path `"HKCU:\Software\Microsoft\OneDrive`" -Name Tenants -Confirm:`$False -ErrorAction SilentlyContinue
-    `$res = New-Item -Path `"HKCU:\Software\Microsoft\OneDrive\Tenants`" -Name a3230643-8a7c-41ca-b8e5-e7ee5c2d17b2 -Confirm:`$False -ErrorAction SilentlyContinue
-    `$res = New-ItemProperty -Path `"HKCU:\Software\Microsoft\OneDrive\Tenants\a3230643-8a7c-41ca-b8e5-e7ee5c2d17b2`" -Name DisableCustomRoot -Value 1 -PropertyType DWORD -Force -ErrorAction Stop
+    `$res = New-ItemProperty -Path `"HKCU:\Software\Microsoft\OneDrive`" -Name EnableHoldTheFile -Value 1 -PropertyType DWORD -Force -ErrorAction Stop
+
+    `$res = New-Item -Path `"HKCU:\Software\Microsoft\OneDrive`" -Name AllowTenantList -ErrorAction SilentlyContinue
+    `$res = New-ItemProperty -Path `"HKCU:\Software\Microsoft\OneDrive\AllowTenantList`" -Name a3230643-8a7c-41ca-b8e5-e7ee5c2d17b2 -PropertyType String -Force -ErrorAction Stop
+
+    `$res = New-Item -Path `"HKCU:\Software\Microsoft\OneDrive`" -Name DisableCustomRoot -ErrorAction SilentlyContinue
+    `$res = New-ItemProperty -Path `"HKCU:\Software\Microsoft\OneDrive\DisableCustomRoot`" -Name a3230643-8a7c-41ca-b8e5-e7ee5c2d17b2 -Value 1 -PropertyType DWORD -Force -ErrorAction Stop
+
+    `$res = New-Item -Path `"HKCU:\Software\Microsoft\OneDrive`" -Name DiskSpaceCheckThresholdMB -ErrorAction SilentlyContinue
+    `$res = New-ItemProperty -Path `"HKCU:\Software\Microsoft\OneDrive\DiskSpaceCheckThresholdMB`" -Name a3230643-8a7c-41ca-b8e5-e7ee5c2d17b2 -Value '00500000' -PropertyType DWORD -Force -ErrorAction Stop
+
+
 
     Write-Output `"Registry keys for Onedrive added`"
 }catch{
