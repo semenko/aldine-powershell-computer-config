@@ -83,11 +83,15 @@ $vbsSilentPSRunner | Out-File $desiredVBSScriptPath -Force
 #ENSURE CONFIG REGISTRY KEYS ARE CREATED
 try{
     Write-Output "Adding registry keys for Onedrive"
-    $res = New-Item -Path "HKLM:\Software\Policies\Microsoft\Onedrive" -Force -Confirm:$False -ErrorAction SilentlyContinue
-    $res = New-ItemProperty -Path "HKLM:\Software\Policies\Microsoft\Onedrive" -Name SilentAccountConfig -Value 1 -PropertyType DWORD -Force -ErrorAction Stop
+    $res = New-Item -Path "HKLM:\Software\Policies\Microsoft" -Name OneDrive -Force -ErrorAction SilentlyContinue
+    $res = New-ItemProperty -Path "HKLM:\Software\Policies\Microsoft\OneDrive" -Name SilentAccountConfig -Value 1 -PropertyType DWORD -Force -ErrorAction Stop
     if($enableFilesOnDemand){
-        $res = New-ItemProperty -Path "HKLM:\Software\Policies\Microsoft\Onedrive" -Name FilesOnDemandEnabled -Value 1 -PropertyType DWORD -Force -ErrorAction Stop
+        $res = New-ItemProperty -Path "HKLM:\Software\Policies\Microsoft\OneDrive" -Name FilesOnDemandEnabled -Value 1 -PropertyType DWORD -Force -ErrorAction Stop
     }
+    $res = New-Item -Path "HKLM:\Software\Policies\Microsoft\OneDrive" -Name AllowTenantList -ErrorAction SilentlyContinue
+    $res = New-ItemProperty -Path "HKLM:\Software\Policies\Microsoft\OneDrive\AllowTenantList" -Name a3230643-8a7c-41ca-b8e5-e7ee5c2d17b2 -PropertyType String -Force -ErrorAction Stop
+    $res = New-Item -Path "HKLM:\Software\Policies\Microsoft\OneDrive" -Name DiskSpaceCheckThresholdMB -ErrorAction SilentlyContinue
+    $res = New-ItemProperty -Path "HKLM:\Software\Policies\Microsoft\OneDrive\DiskSpaceCheckThresholdMB" -Name a3230643-8a7c-41ca-b8e5-e7ee5c2d17b2 -Value '00500000' -PropertyType DWORD -Force -ErrorAction Stop
     Write-Output "Registry keys for Onedrive added"
 }catch{
     Write-Error "Failed to add Onedrive registry keys, installation may not be consistent" -ErrorAction Continue
@@ -148,7 +152,7 @@ try{
     `$res = New-ItemProperty -Path `"HKCU:\Software\Microsoft\OneDrive`" -Name EnableADAL -Value 1 -PropertyType DWORD -Force -ErrorAction Stop
     `$res = New-ItemProperty -Path `"HKCU:\Software\Microsoft\OneDrive`" -Name SilentAccountConfig -Value 1 -PropertyType DWORD -Force -ErrorAction Stop
     `$res = New-ItemProperty -Path `"HKCU:\Software\Microsoft\OneDrive`" -Name EnableAllOcsiClients -Value 1 -PropertyType DWORD -Force -ErrorAction Stop
-    `$res = New-ItemProperty -Path `"HKCU:\Software\Microsoft\OneDrive`" -Name EnableHoldTheFile -Value 1 -PropertyType DWORD -Force -ErrorAction Stop
+    `$res = New-ItemProperty -Path `"HKCU:\Software\Microsoft\OneDrive`" -Name EnableHoldTheFile -Value 0 -PropertyType DWORD -Force -ErrorAction Stop
 
     `$res = New-Item -Path `"HKCU:\Software\Microsoft\OneDrive`" -Name AllowTenantList -ErrorAction SilentlyContinue
     `$res = New-ItemProperty -Path `"HKCU:\Software\Microsoft\OneDrive\AllowTenantList`" -Name a3230643-8a7c-41ca-b8e5-e7ee5c2d17b2 -PropertyType String -Force -ErrorAction Stop
@@ -156,9 +160,13 @@ try{
     `$res = New-Item -Path `"HKCU:\Software\Microsoft\OneDrive`" -Name DisableCustomRoot -ErrorAction SilentlyContinue
     `$res = New-ItemProperty -Path `"HKCU:\Software\Microsoft\OneDrive\DisableCustomRoot`" -Name a3230643-8a7c-41ca-b8e5-e7ee5c2d17b2 -Value 1 -PropertyType DWORD -Force -ErrorAction Stop
 
+    `$res = New-Item -Path `"HKCU:\Software\Policies\Microsoft`" -Name OneDrive -ErrorAction SilentlyContinue
+    `$res = New-Item -Path `"HKCU:\Software\Policies\Microsoft\OneDrive`" -Name DisableCustomRoot -ErrorAction SilentlyContinue
+    `$res = New-ItemProperty -Path `"HKCU:\Software\Policies\Microsoft\OneDrive\DisableCustomRoot`" -Name a3230643-8a7c-41ca-b8e5-e7ee5c2d17b2 -Value 1 -PropertyType DWORD -Force -ErrorAction Stop
+
+
     `$res = New-Item -Path `"HKCU:\Software\Microsoft\OneDrive`" -Name DiskSpaceCheckThresholdMB -ErrorAction SilentlyContinue
     `$res = New-ItemProperty -Path `"HKCU:\Software\Microsoft\OneDrive\DiskSpaceCheckThresholdMB`" -Name a3230643-8a7c-41ca-b8e5-e7ee5c2d17b2 -Value '00500000' -PropertyType DWORD -Force -ErrorAction Stop
-
 
 
     Write-Output `"Registry keys for Onedrive added`"
@@ -232,6 +240,9 @@ try{
     write-error `"Failed to read Onedrive version information from the registry, assuming Onedrive is not installed`" -ErrorAction Continue
     write-error `$_ -ErrorAction Continue
 }
+
+# Kill any existing OneDrive tasks
+get-process | where {`$_.ProcessName -like `"onedrive*`"} | Stop-Process -Force -Confirm:`$False
 
 #DOWNLOAD ONEDRIVE INSTALLER AND RUN IT
 try{
