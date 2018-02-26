@@ -169,7 +169,7 @@ try{
     `$res = New-ItemProperty -Path `"HKCU:\Software\Microsoft\OneDrive\DiskSpaceCheckThresholdMB`" -Name a3230643-8a7c-41ca-b8e5-e7ee5c2d17b2 -Value '00500000' -PropertyType DWORD -Force -ErrorAction Stop
 
 
-    Write-Output `"Registry keys for Onedrive added`"
+    Write-Output `"Registry keys for Onedrive added v2`"
 }catch{
     Write-Error `"Failed to add Onedrive registry keys, installation may not be consistent`" -ErrorAction Continue
     Write-Error `$_ -ErrorAction Continue
@@ -402,19 +402,6 @@ public extern static int SHSetKnownFolderPath(ref Guid folderId, uint flags, Int
     Return `$Path
 }
 
-Function Get-KnownFolderPath {
-    Param (
-            [Parameter(Mandatory = `$true)]
-            [ValidateSet('AdminTools','ApplicationData','CDBurning','CommonAdminTools','CommonApplicationData','CommonDesktopDirectory','CommonDocuments','CommonMusic',`
-            'CommonOemLinks','CommonPictures','CommonProgramFiles','CommonProgramFilesX86','CommonPrograms','CommonStartMenu','CommonStartup','CommonTemplates',`
-            'CommonVideos','Cookies','Desktop','DesktopDirectory','Downloads','Favorites','Fonts','History','InternetCache','LocalApplicationData','LocalizedResources','MyComputer',`
-            'MyDocuments','MyMusic','MyPictures','MyVideos','NetworkShortcuts','Personal','PrinterShortcuts','ProgramFiles','ProgramFilesX86','Programs','Recent',`
-            'Resources','SendTo','StartMenu','Startup','System','SystemX86','Templates','UserProfile','Windows')]
-            [string]`$KnownFolder
-    )
-    Return [Environment]::GetFolderPath(`$KnownFolder)
-}
-
 Function Redirect-Folder {
     Param (
         `$SyncFolder,
@@ -423,17 +410,9 @@ Function Redirect-Folder {
         `$Target
     )
 
-    `$Folder = Get-KnownFolderPath -KnownFolder `$GetFolder
-    If (`$Folder -ne (Join-Path `$SyncFolder -ChildPath `$Target)) {
-        Write-Verbose `"Redirecting `$SetFolder to `$(Join-Path `$SyncFolder -ChildPath `$Target)`"
-        Set-KnownFolderPath -KnownFolder `$SetFolder -Path (Join-Path `$SyncFolder -ChildPath `$Target)
-        if(`$copyExistingFiles){
-            Get-ChildItem -Path `$Folder -ErrorAction Continue | Copy-Item -Destination (Join-Path `$SyncFolder -ChildPath `$Target) -Recurse -Container -Force -Confirm:`$False -ErrorAction Continue
-        }
-        Attrib +h `$Folder
-    } Else {
-        Write-Verbose `"Folder `$GetFolder matches target. Skipping redirection.`"
-    }
+    Write-Verbose `"Redirecting `$SetFolder to `$(Join-Path `$SyncFolder -ChildPath `$Target)`"
+    Set-KnownFolderPath -KnownFolder `$SetFolder -Path (Join-Path `$SyncFolder -ChildPath `$Target)
+    Attrib +h `$Folder
 }
 
 if(`$detectedFolderPath -and `$redirectFoldersToOnedriveForBusiness){
