@@ -412,7 +412,6 @@ Function Redirect-Folder {
 
     Write-Verbose `"Redirecting `$SetFolder to `$(Join-Path `$SyncFolder -ChildPath `$Target)`"
     Set-KnownFolderPath -KnownFolder `$SetFolder -Path (Join-Path `$SyncFolder -ChildPath `$Target)
-    Attrib +h `$Folder
 }
 
 if(`$detectedFolderPath -and `$redirectFoldersToOnedriveForBusiness){
