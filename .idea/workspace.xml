@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="19a76edf-f0ee-47b6-8c28-59cd8ec292ca" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/computer/onedrive-auto-config.ps1" afterPath="$PROJECT_DIR$/computer/onedrive-auto-config.ps1" />
+      <change beforePath="$PROJECT_DIR$/user/appearance-tweaks.ps1" afterPath="$PROJECT_DIR$/user/appearance-tweaks.ps1" />
     </list>
     <ignored path="$PROJECT_DIR$/.idea/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -38,11 +38,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="onedrive-auto-config.ps1" pinned="false" current-in-tab="true">
+      <file leaf-file-name="onedrive-auto-config.ps1" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/computer/onedrive-auto-config.ps1">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="833">
-              <caret line="461" column="0" lean-forward="true" selection-start-line="461" selection-start-column="0" selection-end-line="461" selection-end-column="0" />
+            <state relative-caret-position="257">
+              <caret line="413" column="99" lean-forward="false" selection-start-line="413" selection-start-column="99" selection-end-line="413" selection-end-column="99" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="appearance-tweaks.ps1" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/user/appearance-tweaks.ps1">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="126">
+              <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -63,7 +73,6 @@
       <find>SavedSearches</find>
       <find>knownFolderInternalIdentifier</find>
       <find>Documents</find>
-      <find>Downloads</find>
       <find>favori</find>
       <find>searches</find>
       <find>\Onedrive</find>
@@ -75,6 +84,16 @@
       <find>set-known</find>
       <find>\Software\Policies</find>
       <find>kill</find>
+      <find>minimumoff</find>
+      <find>DesktopDirectory</find>
+      <find>Downloads</find>
+      <find>CDBurning</find>
+      <find>downloads</find>
+      <find>Get-KnownFolderP</find>
+      <find>$GetFolder</find>
+      <find>Redirect-Folder</find>
+      <find>Get-Known</find>
+      <find>$Folder</find>
     </findStrings>
     <replaceStrings>
       <replace>\OneDrive</replace>
@@ -95,9 +114,9 @@
         <option value="$PROJECT_DIR$/computer/test.py" />
         <option value="$PROJECT_DIR$/user/remove-hello-pin.ps1" />
         <option value="$PROJECT_DIR$/user/storage-sense.ps1" />
-        <option value="$PROJECT_DIR$/user/appearance-tweaks.ps1" />
         <option value="$PROJECT_DIR$/redirect-folders-and-setup-apps.ps1" />
         <option value="$PROJECT_DIR$/computer/onedrive-auto-config.ps1" />
+        <option value="$PROJECT_DIR$/user/appearance-tweaks.ps1" />
       </list>
     </option>
   </component>
@@ -252,7 +271,28 @@
       <option name="project" value="LOCAL" />
       <updated>1519401359097</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="more onedrive fixes">
+      <created>1519596523451</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1519596523451</updated>
+    </task>
+    <task id="LOCAL-00008" summary="more onedrive fixes">
+      <created>1519605201117</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1519605201117</updated>
+    </task>
+    <task id="LOCAL-00009" summary="more onedrive fixes">
+      <created>1519605449453</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1519605449453</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -589,13 +629,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/user/appearance-tweaks.ps1">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="0" lean-forward="true" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/set-firewall-rdp-hardening.ps1">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="476">
@@ -621,8 +654,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/computer/onedrive-auto-config.ps1">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="833">
-          <caret line="461" column="0" lean-forward="true" selection-start-line="461" selection-start-column="0" selection-end-line="461" selection-end-column="0" />
+        <state relative-caret-position="257">
+          <caret line="413" column="99" lean-forward="false" selection-start-line="413" selection-start-column="99" selection-end-line="413" selection-end-column="99" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/user/appearance-tweaks.ps1">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
           <folding />
         </state>
       </provider>
