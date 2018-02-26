@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="19a76edf-f0ee-47b6-8c28-59cd8ec292ca" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/user/onedrive-user-config.ps1" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/user/onedrive-user-config.ps1" afterPath="$PROJECT_DIR$/user/onedrive-user-config.ps1" />
     </list>
     <ignored path="$PROJECT_DIR$/.idea/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -41,8 +41,8 @@
       <file leaf-file-name="onedrive-user-config.ps1" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/user/onedrive-user-config.ps1">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="504">
-              <caret line="24" column="204" lean-forward="false" selection-start-line="24" selection-start-column="204" selection-end-line="24" selection-end-column="204" />
+            <state relative-caret-position="546">
+              <caret line="26" column="0" lean-forward="true" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -307,7 +307,14 @@
       <option name="project" value="LOCAL" />
       <updated>1519665001612</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="user config">
+      <created>1519666636318</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1519666636318</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -356,7 +363,8 @@
     <MESSAGE value="onedrive set" />
     <MESSAGE value="more onedrive fixes" />
     <MESSAGE value="user folder" />
-    <option name="LAST_COMMIT_MESSAGE" value="user folder" />
+    <MESSAGE value="user config" />
+    <option name="LAST_COMMIT_MESSAGE" value="user config" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -680,8 +688,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/user/onedrive-user-config.ps1">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="504">
-          <caret line="24" column="204" lean-forward="false" selection-start-line="24" selection-start-column="204" selection-end-line="24" selection-end-column="204" />
+        <state relative-caret-position="546">
+          <caret line="26" column="0" lean-forward="true" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
           <folding />
         </state>
       </provider>
