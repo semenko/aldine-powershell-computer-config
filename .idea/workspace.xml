@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="19a76edf-f0ee-47b6-8c28-59cd8ec292ca" name="Default" comment="">
+      <change beforePath="" afterPath="$PROJECT_DIR$/user/onedrive-user-config.ps1" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/computer/onedrive-auto-config.ps1" afterPath="$PROJECT_DIR$/computer/onedrive-auto-config.ps1" />
     </list>
     <ignored path="$PROJECT_DIR$/.idea/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -21,7 +21,7 @@
       <file leaf-file-name="sabre-trams-permissions.ps1" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/computer/sabre-trams-permissions.ps1">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="42">
+            <state relative-caret-position="0">
               <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
               <folding />
             </state>
@@ -31,18 +31,18 @@
       <file leaf-file-name="redirect-folders-and-setup-apps.ps1" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/redirect-folders-and-setup-apps.ps1">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="5523">
-              <caret line="263" column="0" lean-forward="false" selection-start-line="263" selection-start-column="0" selection-end-line="263" selection-end-column="0" />
+            <state relative-caret-position="140">
+              <caret line="230" column="14" lean-forward="true" selection-start-line="230" selection-start-column="14" selection-end-line="230" selection-end-column="14" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="onedrive-auto-config.ps1" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/computer/onedrive-auto-config.ps1">
+      <file leaf-file-name="onedrive-user-config.ps1" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/user/onedrive-user-config.ps1">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="152">
-              <caret line="250" column="94" lean-forward="true" selection-start-line="250" selection-start-column="94" selection-end-line="250" selection-end-column="94" />
+            <state relative-caret-position="504">
+              <caret line="24" column="204" lean-forward="false" selection-start-line="24" selection-start-column="204" selection-end-line="24" selection-end-column="204" />
               <folding />
             </state>
           </provider>
@@ -87,6 +87,8 @@
       <find>Prog</find>
       <find>ProgramData</find>
       <find>xmlDownloadURL</find>
+      <find>$False</find>
+      <find>`$res =</find>
     </findStrings>
     <replaceStrings>
       <replace>\OneDrive</replace>
@@ -110,6 +112,7 @@
         <option value="$PROJECT_DIR$/redirect-folders-and-setup-apps.ps1" />
         <option value="$PROJECT_DIR$/user/appearance-tweaks.ps1" />
         <option value="$PROJECT_DIR$/computer/onedrive-auto-config.ps1" />
+        <option value="$PROJECT_DIR$/user/onedrive-user-config.ps1" />
       </list>
     </option>
   </component>
@@ -167,8 +170,13 @@
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Downloads" />
     <property name="settings.editor.selected.configurable" value="configurable.group.appearance" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\nick\Downloads" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -292,7 +300,14 @@
       <option name="project" value="LOCAL" />
       <updated>1519605556605</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="user folder">
+      <created>1519665001612</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1519665001612</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -308,6 +323,7 @@
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16666667" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="SciView" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -324,7 +340,6 @@
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="DB Browser" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Log Manager" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -348,20 +363,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/computer/disk-clean.ps1">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="5" lean-forward="false" selection-start-line="4" selection-start-column="5" selection-end-line="4" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/user/office-preferences.ps1">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/computer/disable-smb1.ps1">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
@@ -639,16 +640,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/computer/sabre-trams-permissions.ps1">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="42">
+        <state relative-caret-position="0">
           <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/redirect-folders-and-setup-apps.ps1">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5523">
-          <caret line="263" column="0" lean-forward="false" selection-start-line="263" selection-start-column="0" selection-end-line="263" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -661,10 +654,34 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$USER_HOME$/Downloads/onedrive-auto-config-v2.ps1">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/computer/onedrive-auto-config.ps1">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="250" column="94" lean-forward="true" selection-start-line="250" selection-start-column="94" selection-end-line="250" selection-end-column="94" />
+        <state relative-caret-position="1811">
+          <caret line="170" column="0" lean-forward="true" selection-start-line="147" selection-start-column="0" selection-end-line="170" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/redirect-folders-and-setup-apps.ps1">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="140">
+          <caret line="230" column="14" lean-forward="true" selection-start-line="230" selection-start-column="14" selection-end-line="230" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/user/onedrive-user-config.ps1">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="504">
+          <caret line="24" column="204" lean-forward="false" selection-start-line="24" selection-start-column="204" selection-end-line="24" selection-end-column="204" />
           <folding />
         </state>
       </provider>
