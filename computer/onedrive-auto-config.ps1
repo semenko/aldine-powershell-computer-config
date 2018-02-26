@@ -246,7 +246,7 @@ get-process | where {`$_.ProcessName -like `"onedrive*`"} | Stop-Process -Force 
 
 #DOWNLOAD ONEDRIVE INSTALLER AND RUN IT
 try{
-    if(!`$isOnedriveUpToDate -and `$downloadURL){
+    if(!`$isOnedriveUpToDate -and `$downloadURL -and `$False){
         Write-Output `"downloading from download URL: `$downloadURL`"
         Invoke-WebRequest -UseBasicParsing -Uri `$downloadURL -Method GET -OutFile `$temporaryInstallerPath
         Write-Output `"downloaded finished from download URL: `$downloadURL`"
