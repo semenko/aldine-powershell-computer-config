@@ -10,7 +10,7 @@ get-process | where {$_.ProcessName -like "onedrive*"} | Stop-Process -Force -Co
 New-Item -Path "HKCU:\Software\Microsoft" -Name OneDrive -ErrorAction SilentlyContinue
 New-ItemProperty -Path "HKCU:\Software\Microsoft\OneDrive" -Name DefaultToBusinessFRE -Value 1 -PropertyType DWORD -Force -ErrorAction SilentlyContinue
 New-ItemProperty -Path "HKCU:\Software\Microsoft\OneDrive" -Name DisablePersonalSync -Value 1 -PropertyType DWORD -Force -ErrorAction SilentlyContinue
-New-ItemProperty -Path "HKCU:\Software\Microsoft\OneDrive" -Name EnableEnterpriseUpdate -Value 1 -PropertyType DWORD -Force -ErrorAction SilentlyContinue
+# New-ItemProperty -Path "HKCU:\Software\Microsoft\OneDrive" -Name EnableEnterpriseUpdate -Value 1 -PropertyType DWORD -Force -ErrorAction SilentlyContinue
 New-ItemProperty -Path "HKCU:\Software\Microsoft\OneDrive" -Name EnableADAL -Value 1 -PropertyType DWORD -Force -ErrorAction SilentlyContinue
 New-ItemProperty -Path "HKCU:\Software\Microsoft\OneDrive" -Name SilentAccountConfig -Value 1 -PropertyType DWORD -Force -ErrorAction SilentlyContinue
 New-ItemProperty -Path "HKCU:\Software\Microsoft\OneDrive" -Name EnableAllOcsiClients -Value 1 -PropertyType DWORD -Force -ErrorAction SilentlyContinue
@@ -92,7 +92,7 @@ Function Set-KnownFolderPath {
     $Type = ([System.Management.Automation.PSTypeName]'KnownFolders').Type
     If (-not $Type) {
         $Signature = @'
-[DllImport(`"shell32.dll`")]
+[DllImport("shell32.dll")]
 public extern static int SHSetKnownFolderPath(ref Guid folderId, uint flags, IntPtr token, [MarshalAs(UnmanagedType.LPWStr)] string path);
 '@
         $Type = Add-Type -MemberDefinition $Signature -Name 'KnownFolders' -Namespace 'SHSetKnownFolderPath' -PassThru
@@ -104,15 +104,15 @@ public extern static int SHSetKnownFolderPath(ref Guid folderId, uint flags, Int
 
     If (Test-Path $Path -PathType Container) {
         ForEach ($guid in $KnownFolders[$KnownFolder]) {
-            Write-Verbose `"Redirecting $KnownFolders[$KnownFolder]`"
+            Write-Verbose "Redirecting $KnownFolders[$KnownFolder]"
             $result = $Type::SHSetKnownFolderPath([ref]$guid, 0, 0, $Path)
             If ($result -ne 0) {
-                $errormsg = `"Error redirecting $($KnownFolder). Return code $($result) = $((New-Object System.ComponentModel.Win32Exception($result)).message)`"
+                $errormsg = "Error redirecting $($KnownFolder). Return code $($result) = $((New-Object System.ComponentModel.Win32Exception($result)).message)"
                 Throw $errormsg
             }
         }
     } Else {
-        Throw New-Object System.IO.DirectoryNotFoundException `"Could not find part of the path $Path.`"
+        Throw New-Object System.IO.DirectoryNotFoundException "Could not find part of the path $Path."
     }
 
 	Attrib +r $Path
@@ -123,10 +123,10 @@ public extern static int SHSetKnownFolderPath(ref Guid folderId, uint flags, Int
 $SyncFolder = "$env:USERPROFILE\OneDrive - Aldine Travel"
 
 Set-KnownFolderPath -KnownFolder "Desktop" -Path (Join-Path $SyncFolder -ChildPath "Desktop")
-Set-KnownFolderPath -KnownFolder "MyDocuments" -Path (Join-Path $SyncFolder -ChildPath "Documents")
+Set-KnownFolderPath -KnownFolder "Documents" -Path (Join-Path $SyncFolder -ChildPath "Documents")
 Set-KnownFolderPath -KnownFolder "Downloads" -Path (Join-Path $SyncFolder -ChildPath "Downloads")
-Set-KnownFolderPath -KnownFolder "MyPictures" -Path (Join-Path $SyncFolder -ChildPath "Pictures")
-Set-KnownFolderPath -KnownFolder "MyVideos" -Path (Join-Path $SyncFolder -ChildPath "Videos")
+Set-KnownFolderPath -KnownFolder "Pictures" -Path (Join-Path $SyncFolder -ChildPath "Pictures")
+Set-KnownFolderPath -KnownFolder "Videos" -Path (Join-Path $SyncFolder -ChildPath "Videos")
 
 
 # Hide Original Folders
