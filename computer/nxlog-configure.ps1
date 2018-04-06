@@ -17,5 +17,6 @@ New-Item "C:\Program Files (x86)\nxlog\cert" -ItemType Directory -ErrorAction Si
 (New-Object System.Net.WebClient).DownloadFile($certURL, "C:\Program Files (x86)\nxlog\cert\papertrail-bundle.pem")
 
 
+Restart-Service -Name nxlog
 
 Write-Output "Done."
