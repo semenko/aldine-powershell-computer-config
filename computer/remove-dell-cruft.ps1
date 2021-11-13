@@ -25,12 +25,14 @@ $DellThings =  Get-ChildItem -Path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersi
     Get-ItemProperty |
         Where-Object {$_.DisplayName -ne $null -and $_.DisplayName.StartsWith("Dell") } |
         Where-Object {$_.DisplayVersion -notlike "3.2*"} |
-            Select-Objec -Property DisplayName, DisplayVersion, UninstallString, PSChildName
+            Select-Object -Property DisplayName, DisplayVersion, UninstallString, PSChildName
 
-ForEach ($ver in $SAVer) {
-    Write-Host "Removing: ${$ver.DisplayName}" 
+Write-Host "Dell SW: $($DellThings)"
+
+ForEach ($ver in $DellThings) {
+    Write-Host "** Removing $($ver.DisplayName)"
     If ($ver.UninstallString) {
-        WRite-Host "  Version: ${$ver.DisplayVersion}"
+        Write-Host "  ** Version: $($ver.DisplayVersion)"
         $uninst = $ver.UninstallString
         & cmd /c $uninst /quiet /norestart
 
