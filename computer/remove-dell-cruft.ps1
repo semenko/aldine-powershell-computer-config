@@ -16,10 +16,10 @@ Start-Transcript -Path "C:\intune_remove-dell-cruft.log.txt"
 #     Select-Object -Property  DisplayVersion, UninstallString, PSChildName
 
 # $SAVer = Get-ChildItem -Path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall, HKLM:\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall  |
-    Get-ItemProperty |
-        Where-Object {$_.DisplayName -match "SupportAssist" } |
-        Where-Object {$_.DisplayVersion -notlike "3.2*"} | 
-            Select-Object -Property DisplayVersion, UninstallString, PSChildName
+#    Get-ItemProperty |
+#        Where-Object {$_.DisplayName -match "SupportAssist" } |
+#        Where-Object {$_.DisplayVersion -notlike "3.2*"} | 
+#            Select-Object -Property DisplayVersion, UninstallString, PSChildName
             
 $DellThings =  Get-ChildItem -Path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall, HKLM:\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall  | 
     Get-ItemProperty |
