@@ -27,7 +27,9 @@ Set-ItemProperty -Path $ZoomGeneral -Name "ForceSSOURL" -Type String -Value "ald
 Set-ItemProperty -Path $ZoomGeneral -Name "ForceLoginWithSSO" -Type DWORD -Value 1
 Set-ItemProperty -Path $ZoomGeneral -Name "DisableFacebookLogin" -Type DWORD -Value 1
 Set-ItemProperty -Path $ZoomGeneral -Name "DisableGoogleLogin" -Type DWORD -Value 1
+Set-ItemProperty -Path $ZoomGeneral -Name "DisableLoginWithEmail" -Type DWORD -Value 1
 Set-ItemProperty -Path $ZoomGeneral -Name "EnforceSignInToJoin" -Type DWORD -Value 1
+
 
 # Crashlogs
 Set-ItemProperty -Path $ZoomGeneral -Name "EnableAutoUploadDumps" -Type DWORD -Value 1
