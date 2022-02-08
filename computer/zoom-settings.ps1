@@ -1,7 +1,13 @@
 ## Set Zoom requirements
 # Updated for Zoom 5.9.0
 
-$ZoomGeneral = "HKLM:\SOFTWARE\Policies\Zoom\Zoom Meetings\General\"
+# LOL
+New-Item -Path "HKLM:\Software\Policies\Zoom" -Force | Out-Null
+New-Item -Path "HKLM:\SOFTWARE\Policies\Zoom\Zoom Meetings" -Force | Out-Null
+New-Item -Path "HKLM:\SOFTWARE\Policies\Zoom\Zoom Meetings\General" -Force | Out-Null
+New-Item -Path "HKLM:\SOFTWARE\Policies\Zoom\Zoom Meetings\Chat" -Force | Out-Null
+
+$ZoomGeneral = "HKLM:\SOFTWARE\Policies\Zoom\Zoom Meetings\General"
 
 # Aggressive update policies -- some may be the default, but just enforce if not
 Set-ItemProperty -Path $ZoomGeneral -Name "EnableClientAutoUpdate" -Type DWORD -Value 1
@@ -34,7 +40,7 @@ Set-ItemProperty -Path $ZoomGeneral -Name "DisableZoomApps" -Type DWORD -Value 1
 
 # Chat non-defaults
 
-$ZoomChat = "HKLM:\SOFTWARE\Policies\Zoom\Zoom Meetings\Chat\"
+$ZoomChat = "HKLM:\SOFTWARE\Policies\Zoom\Zoom Meetings\Chat"
 
 Set-ItemProperty -Path $ZoomChat -Name "SetMessengerDoNotDropThread" -Type DWORD -Value 1
 Set-ItemProperty -Path $ZoomChat -Name "AlwaysShowIMNotificationBanner" -Type DWORD -Value 1
